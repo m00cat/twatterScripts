@@ -20,10 +20,10 @@
 import time
 import tweepy
 
-consumer_key ='turyg3mVmnkXi2YDcYLRUUGLm'
-consumer_secret='CMbOA6zauAsaF5H4TCg8TWX54dejumsK2Aw9IZDGAKqAbmN68V'
-access_token='4867989411-1LyFLBrxUxBKEdE7Mx9Kk6qFgMdprO0CRy9RcIi'
-access_secret='aEIU3qjlNBOYUqfG83bIqswAIvDhJPc4tebXNgpnhZXnf'
+consumer_key ='Your Consumer Key'
+consumer_secret='Consumer Secret here'
+access_token='Access token here'
+access_secret='Access secret here'
  
 auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
@@ -57,7 +57,7 @@ with open('{}.txt'.format(userINP),'w') as list:
             quit()
         except tweepy.error.TweepError:
             print ('Houston, We have a problem! We may have reached the Twatter API rate limit')
-            print ('If you get this right away - you can't scrape this user- Try another! \n')
+            print ('If you get this right away - you can\'t scrape this user- Try another! \n')
             time.sleep(15*60)
             #continue
         except:
