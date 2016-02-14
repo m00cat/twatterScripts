@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # This is a VERY simple non-elegant Python script to scrape a Twitter Accounts
-# followers AND those _following_ the account.
+# followers.
 # You'll need your OWN twitter OAuth keys.... login to http://apps.twitter.com
 # to set this up.... ALSO you'll need to install the python tweepy module..
 # because we are using the tweepy module to interact with the twitter API
@@ -17,24 +17,20 @@
 #
 #
 
-
 import time
 import tweepy
 
-# insert your Twitter keys here
-consumer_key ='Your Consumer Key'
-consumer_secret='Your Consumer Secret'
-access_token='Your Access Token'
-access_secret='Yuur Acess Secret'
-
+consumer_key ='turyg3mVmnkXi2YDcYLRUUGLm'
+consumer_secret='CMbOA6zauAsaF5H4TCg8TWX54dejumsK2Aw9IZDGAKqAbmN68V'
+access_token='4867989411-1LyFLBrxUxBKEdE7Mx9Kk6qFgMdprO0CRy9RcIi'
+access_secret='aEIU3qjlNBOYUqfG83bIqswAIvDhJPc4tebXNgpnhZXnf'
+ 
 auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
-
-
 if (not api):
-    print ('Can\'t Authenticate')
-    sys.exit(-1)
+     print('no login bitch')
+     quit()
 
 userINP = input ('Enter the Twitter screen name: ')
 
@@ -61,7 +57,7 @@ with open('{}.txt'.format(userINP),'w') as list:
             quit()
         except tweepy.error.TweepError:
             print ('Houston, We have a problem! We may have reached the Twatter API rate limit')
-            print ('We are now forced to wait 15 minutes for next window.. Blame Twatter! \n')
+            print ('If you get this right away - you can't scrape this user- Try another! \n')
             time.sleep(15*60)
             #continue
         except:
