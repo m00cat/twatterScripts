@@ -31,7 +31,12 @@ auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
-userINP=input( "Enter the Twitter screen name to scrape: " )
+
+if (not api):
+    print ('Can\'t Authenticate')
+    sys.exit(-1)
+
+userINP = input ('Enter the Twitter screen name: ')
 
 
 #This writes a file named 'USERNAME_YOU_ENTERED.txt' to the same directory you
@@ -43,28 +48,28 @@ with open('{}.txt'.format(userINP),'w') as list:
         print ('We are logged in!')
  
     user = tweepy.Cursor(api.followers, screen_name=userINP).items()
-    user2 = tweepy.Cursor(api.friends, screen_name=userINP).items()
-    #x=1
+    x=1
     while True:
         try:
-            print ('Scraping.... ')
             u = next(user, False)
-            v = next(user2, False)
             list.write('twitter.com/{}\n'.format(u.screen_name))
-            print ('Users Follower twitter.com/{}'.format(u.screen_name))
-            print ('User Following twitter.com/{}'.format(v.screen_name))
+            print ('Scraped user #{}'.format(x))
+            print ('Follower twitter.com/{}'.format(u.screen_name))
+            x+=1
         except KeyboardInterrupt:
-            print ('  <--- You pressed Ctrl-C - Program terminated.')
+            print ('  <--- You pressed Ctrl-C - Program terminated. Incomplete list written to file')
             quit()
         except tweepy.error.TweepError:
             print ('Houston, We have a problem! We may have reached the Twatter API rate limit')
             print ('We are now forced to wait 15 minutes for next window.. Blame Twatter! \n')
             time.sleep(15*60)
+            #continue
         except:
             if u is False:
-                print ('Scrape Done! Now pastebin the contents of the list!')
-                print ('Post the pastebin url in #opISIS-Targets on irc.anonops.com')
-                print ('for addition to the botnet... Have a coffee and do it again!')
+                print ('Done! Now pastebin the contents of the list in this directory!')
+                print ('Post the pastebin url in #opISIS-Targets')
+                print ('for addition to the botnet...')
+                print ('Have a coffee and do it again!')
                 print ('Don\'t run the script too many times consecutively')
                 print ('or you\'ll run into rate limit problems.. 4 or 5 times an hour!') 
                 quit()
