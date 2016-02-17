@@ -20,17 +20,16 @@
 import time
 import tweepy
 
-consumer_key ='Your Consumer Key'
-consumer_secret='Consumer Secret here'
-access_token='Access token here'
-access_secret='Access secret here'
- 
-auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_secret)
-api = tweepy.API(auth)
+# Replace the API_KEY and API_SECRET with your application's key and secret.
+mykey ='turyg3mVmnkXi2YDcYLRUUGLm'
+mysecret='CMbOA6zauAsaF5H4TCg8TWX54dejumsK2Aw9IZDGAKqAbmN68V'
+print ("Authenticating")
+auth = tweepy.AppAuthHandler(mykey, mysecret)
+api = tweepy.API(auth, wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
 if (not api):
-     print('no login bitch')
-     quit()
+        print ("Can't Authenticate")
+        sys.exit(-1)
+
 
 userINP = input ('Enter the Twitter screen name: ')
 
@@ -48,7 +47,7 @@ with open('{}.txt'.format(userINP),'w') as list:
     while True:
         try:
             u = next(user, False)
-            list.write('twitter.com/{}\n'.format(u.screen_name))
+            list.write('https://twitter.com/intent/user?user_id={}\n'.format(u.id))
             print ('Scraped user #{}'.format(x))
             print ('Follower twitter.com/{}'.format(u.screen_name))
             x+=1
