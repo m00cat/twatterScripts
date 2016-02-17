@@ -47,7 +47,7 @@ with open('{}.txt'.format(userINP),'w') as list:
     while True:
         try:
             u = next(user, False)
-            list.write('https://twitter.com/intent/user?user_id={}\n'.format(u.id))
+            list.write('https://twitter.com/intent/user?user_id={}  -- screen name is @{}\n'.format(u.id,u.screen_name))
             print ('Scraped user #{}'.format(x))
             print ('Follower twitter.com/{}'.format(u.screen_name))
             x+=1
