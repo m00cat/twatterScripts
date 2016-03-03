@@ -21,8 +21,8 @@ import time
 import tweepy
 
 # Replace the API_KEY and API_SECRET with your application's key and secret.
-mykey ='turyg3mVmnkXi2YDcYLRUUGLm'
-mysecret='CMbOA6zauAsaF5H4TCg8TWX54dejumsK2Aw9IZDGAKqAbmN68V'
+mykey ='your key'
+mysecret='your secret'
 print ("Authenticating")
 auth = tweepy.AppAuthHandler(mykey, mysecret)
 api = tweepy.API(auth, wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
